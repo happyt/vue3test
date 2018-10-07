@@ -9,6 +9,8 @@ vue add router
     - added extra page
 vue add vuex
 
+eg https://glebbahmutov.com/blog/vue-vuex-rest-todomvx/
+
 
 ## Project setup
 ```
