@@ -1,8 +1,6 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-     <v-btn color="success">Success</v-btn>
-    <v-btn color="error">Error</v-btn>
       </div>
 </template>
 

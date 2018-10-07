@@ -1,6 +1,8 @@
 <template>
   <div class="setup">
-    <h1>This is the setup page</h1>
+    <h1>This is the value {{ count }}</h1>
+    <v-btn color="success" @click="increment">Plus</v-btn>
+    <v-btn color="error" @click="decrement">Minus</v-btn>
   </div>
 </template>
 
@@ -9,7 +11,19 @@
 
 export default {
   name: 'setup',
-  components: {
+  computed: {
+    count () {
+      return this.$store.state.count
+    }
+  },
+  methods: {
+    increment () {
+      this.$store.commit('increment')
+    },
+    decrement () {
+      this.$store.commit('decrement')
+    }
   }
+
 }
 </script>
