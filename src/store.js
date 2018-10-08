@@ -52,6 +52,7 @@ export default new Vuex.Store({
       axios.get(`http://jsonplaceholder.typicode.com/posts`)
         .then(response => {
           // JSON responses are automatically parsed.
+          console.log("xxx")
           this.posts = response.data
         })
         .catch(e => {
