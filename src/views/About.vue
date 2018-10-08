@@ -1,10 +1,12 @@
 <template>
   <div class="about">
-    <h1>This is an api listing</h1>
+    <h1>This is an api list {{count}}</h1>
     <v-btn color="success" @click="readPosts">GET</v-btn>
-    <li v-for="item in posts" :key="item.id">
-      {{ item.title }}
-    </li>
+    <ul>
+      <li v-for="item in posts" :key="item.id">
+        {{ item.title }}
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -18,7 +20,7 @@ export default {
       return this.$store.state.count
     },
     posts () {
-      return this.$store.posts2
+      return this.$store.state.posts
     }
   },
   methods: {

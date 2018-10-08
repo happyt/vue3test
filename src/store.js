@@ -4,6 +4,12 @@ import axios from 'axios'
 
 Vue.use(Vuex)
 
+function randomId () {
+  return Math.random()
+    .toString()
+    .substr(2, 10)
+}
+
 export default new Vuex.Store({
   state: {
     count: 7,
@@ -12,7 +18,7 @@ export default new Vuex.Store({
         'userId': 1,
         'id': 1,
         'title': 'sunt aut facere optio reprehenderit',
-        'body': 'quia et suscipit\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto'
+        'body': 'quia et totam\nnostrum eveniet architecto'
       },
       {
         'userId': 1,
