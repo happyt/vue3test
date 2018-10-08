@@ -12,6 +12,7 @@ function randomId () {
 
 export default new Vuex.Store({
   state: {
+    flag: false,
     loading: false,
     count: 7,
     posts: [
@@ -38,8 +39,11 @@ export default new Vuex.Store({
     increment: state => state.count++,
     decrement: state => state.count--,
 
-    SET_LOADING (state, flag) {
-      state.loading = flag
+    SET_LOADING (state, value) {
+      state.loading = value
+    },
+    SET_POSTS (state, posts) {
+      state.posts = posts
     },
     SET_TODOS (state, todos) {
       state.todos = todos
@@ -49,6 +53,9 @@ export default new Vuex.Store({
     },
     CLEAR_NEW_TODO (state) {
       state.newTodo = ''
+    },
+    INVERT_FLAG (state) {
+      state.flag = !state.flag
     }
   },
   actions: {
@@ -56,10 +63,9 @@ export default new Vuex.Store({
       commit('SET_LOADING', true)
       axios.get(`http://jsonplaceholder.typicode.com/posts`)
       // JSON responses are automatically parsed.
-      console.log('getPosts')
-        .then(r => r.data)
-        .then(posts => {
-          commit('SET_TODOS', posts)
+        .then(response => {
+          console.log(response.data.length)
+          commit('SET_POSTS', response.data)
           commit('SET_LOADING', false)
         })
         .catch(e => {
@@ -92,6 +98,9 @@ export default new Vuex.Store({
     },
     clearNewTodo ({ commit }) {
       commit('CLEAR_NEW_TODO')
+    },
+    invertFlag ({ commit }) {
+      commit('INVERT_FLAG')
     }
   }
 })
