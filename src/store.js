@@ -28,7 +28,16 @@ export default new Vuex.Store({
         'title': 'qui est esse',
         'body': 'est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla'
       }],
-    todos: [],
+    todos: [{
+      'id': 1,
+      'completed': false,
+      'title': 'Next one'
+    },
+    {
+      'id': 2,
+      'completed': false,
+      'title': 'Built in'
+    }],
     newTodo: ''
   },
   getters: {
@@ -64,7 +73,6 @@ export default new Vuex.Store({
       axios.get(`http://jsonplaceholder.typicode.com/posts`)
       // JSON responses are automatically parsed.
         .then(response => {
-          console.log(response.data.length)
           commit('SET_POSTS', response.data)
           commit('SET_LOADING', false)
         })
@@ -75,7 +83,7 @@ export default new Vuex.Store({
     loadTodos ({ commit }) {
       commit('SET_LOADING', true)
       axios
-        .get('/todos')
+        .get('http://localhost:3000/todos')
         .then(r => r.data)
         .then(todos => {
           commit('SET_TODOS', todos)
