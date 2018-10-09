@@ -93,6 +93,7 @@ export default new Vuex.Store({
     addTodo ({ commit, state }) {
       if (!state.newTodo) {
         // do not add empty todos
+        console.log('empty todo')
         return
       }
       const todo = {

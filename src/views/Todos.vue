@@ -12,14 +12,20 @@
       </li>
     </ul>
     <v-btn color="success" @click="addTodo">ADD</v-btn>
+    <TodoItem msg="Welcome"/>
      </div>
 </template>
 
 <script>
+import TodoItem from '@/components/TodoItem.vue'
+
 // @ is an alias to /src
 
 export default {
   name: 'todos',
+  components: {
+    TodoItem
+  },
   computed: {
     loading () {
       return this.$store.state.loading
@@ -36,7 +42,6 @@ export default {
       this.$store.dispatch('loadTodos')
     },
     addTodo () {
-        
       this.$store.dispatch('addTodo')
     }
   }
