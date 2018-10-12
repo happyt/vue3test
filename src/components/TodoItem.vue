@@ -16,6 +16,9 @@
 
 <script>
 export default {
-  name: 'TodoItem'
+  name: 'TodoItem',
+  props: [
+    'todo here'
+  ]
 }
 </script>

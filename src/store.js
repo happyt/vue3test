@@ -15,6 +15,10 @@ export default new Vuex.Store({
     flag: false,
     loading: false,
     count: 7,
+    profile: {
+      firstName: 'Terry',
+      lastName: 'Pratchett'
+    },
     posts: [
       {
         'userId': 1,
@@ -28,7 +32,7 @@ export default new Vuex.Store({
         'title': 'qui est esse',
         'body': 'est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla'
       }],
-    todos: [{
+    todosh: [{
       'id': 1,
       'completed': false,
       'title': 'Next one'
@@ -42,7 +46,15 @@ export default new Vuex.Store({
   },
   getters: {
     newTodo: state => state.newTodo,
-    todos: state => state.todos
+    todos: state => state.todosh,
+    fullName: state => {
+      return `${state.profile.firstName} ${state.profile.lastName}`
+    },
+    welcomeMessage: (state, getters) => {
+      // getters can not just use the state
+      // they can use other getters
+      return `Hello ${getters.fullName}`
+    }
   },
   mutations: {
     increment: state => state.count++,

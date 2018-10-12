@@ -34,7 +34,7 @@ export default {
       return this.$store.state.count
     },
     todos () {
-      return this.$store.state.todos
+      return this.$store.state.todosh
     }
   },
   methods: {
