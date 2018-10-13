@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Setup from './views/Setup.vue'
 import Todos from './views/Todos.vue'
+import ListData from './views/ListData.vue'
 
 Vue.use(Router)
 
@@ -27,6 +28,11 @@ export default new Router({
       path: '/todos',
       name: 'todos',
       component: Todos
+    },
+    {
+      path: '/listdata',
+      name: 'listdata',
+      component: ListData
     },
     {
       path: '/setup',

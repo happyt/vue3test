@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+var config = require('./config')
 
 Vue.use(Vuex)
 
@@ -15,6 +16,7 @@ export default new Vuex.Store({
     flag: false,
     loading: false,
     count: 7,
+    listURL: config.url,
     profile: {
       firstName: 'Terry',
       lastName: 'Pratchett'
@@ -42,7 +44,8 @@ export default new Vuex.Store({
       'completed': false,
       'title': 'Built in'
     }],
-    newTodo: ''
+    newTodo: '',
+    list: {}
   },
   getters: {
     newTodo: state => state.newTodo,
@@ -65,6 +68,10 @@ export default new Vuex.Store({
     },
     SET_POSTS (state, posts) {
       state.posts = posts
+    },
+    SET_LIST (state, list) {
+      console.log('here')
+      state.list = list
     },
     SET_TODOS (state, todos) {
       state.todos = todos
@@ -119,6 +126,18 @@ export default new Vuex.Store({
     },
     clearNewTodo ({ commit }) {
       commit('CLEAR_NEW_TODO')
+    },
+    loadList ({ commit }) {
+      commit('SET_LOADING', true)
+      axios.get(config.url)
+      // JSON responses are automatically parsed.
+        .then(response => {
+          commit('SET_LIST', response.data)
+          commit('SET_LOADING', false)
+        })
+        .catch(e => {
+          this.errors.push(e)
+        })
     },
     invertFlag ({ commit }) {
       commit('INVERT_FLAG')
