@@ -34,7 +34,7 @@ export default new Vuex.Store({
         'title': 'qui est esse',
         'body': 'est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla'
       }],
-    todosh: [{
+    todos: [{
       'id': 1,
       'completed': false,
       'title': 'Next one'
@@ -105,6 +105,7 @@ export default new Vuex.Store({
         .get('http://localhost:3000/todos')
         .then(r => r.data)
         .then(todos => {
+          console.log('Returned...', todos)
           commit('SET_TODOS', todos)
           commit('SET_LOADING', false)
         })
@@ -121,6 +122,7 @@ export default new Vuex.Store({
         id: randomId()
       }
       axios.post('/todos', todo).then(_ => {
+        console.log('add one')
         commit('ADD_TODO', todo)
       })
     },
@@ -132,6 +134,7 @@ export default new Vuex.Store({
       axios.get(config.url)
       // JSON responses are automatically parsed.
         .then(response => {
+          console.log(response.data)
           commit('SET_LIST', response.data)
           commit('SET_LOADING', false)
         })

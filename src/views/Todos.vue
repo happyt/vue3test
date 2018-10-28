@@ -1,18 +1,18 @@
 <template>
-  <div class="todos">
+  <div id="card">
     <h1>This is an api list {{count}}</h1>
     <v-btn color="success" @click="readTodos">GET</v-btn>
      <v-progress-circular v-if=loading
       indeterminate
       color="primary"
     ></v-progress-circular>
-    <ul>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  <ul>
       <li v-for="item in todos.slice(0, 5)" :key="item.id">
         {{ item.title }}
       </li>
     </ul>
     <v-btn color="success" @click="addTodo">ADD</v-btn>
-    <TodoItem msg="Welcome"/>
+    <TodoItem todo=todo1  editing=true />
      </div>
 </template>
 
@@ -23,6 +23,11 @@ import TodoItem from '@/components/TodoItem.vue'
 
 export default {
   name: 'todos',
+  todo1: {
+    'id': 11,
+    'completed': false,
+    'title': 'Alphabet zoo'
+  },
   components: {
     TodoItem
   },
@@ -34,11 +39,12 @@ export default {
       return this.$store.state.count
     },
     todos () {
-      return this.$store.state.todosh
+      return this.$store.state.todos
     }
   },
   methods: {
     readTodos () {
+      console.log('reading...')
       this.$store.dispatch('loadTodos')
     },
     addTodo () {

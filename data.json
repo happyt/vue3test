@@ -2,8 +2,16 @@
     "todos": [
         {
             "title": "learn Italian",
-            "completed": false,
-            "id": "6552b6dc4b"
+            "done": false,
+            "id": "6552b6dc"
+        },{
+            "title": "learn welsh",
+            "done": false,
+            "id": "6552b64b"
+        },{
+            "title": "combine drawers",
+            "done": false,
+            "id": "6556dc4b"
         }
     ],
     "posts": [

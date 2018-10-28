@@ -1,0 +1,59 @@
+<template>
+  <v-list-tile class="todo-item" :class="{ 'editing': editing }">
+    <v-list-tile-action>
+      <v-checkbox
+        :input-value="todo.completed"
+        @change="toggleTodo(todo)"
+        color="primary"
+        v-if="!editing"
+      ></v-checkbox>
+      <v-icon
+        color="primary"
+        v-else
+      >edit</v-icon>
+    </v-list-tile-action>
+    <template v-if="!editing">
+      <v-list-tile-content
+        :class="{ 'primary--text': todo.done }"
+        @dblclick="editing = true"
+      >
+        {{ todo.text }}
+      </v-list-tile-content>
+      <v-list-tile-action>
+        <v-btn
+          @click="removeTodo(todo)"
+          color="red lighten-3"
+          flat
+          icon
+        >
+          <v-icon>close</v-icon>
+        </v-btn>
+      </v-list-tile-action>
+    </template>
+    <v-text-field
+      :value="todo.title"
+      @blur="doneEdit"
+      @keyup.enter="doneEdit"
+      @keyup.esc="cancelEdit"
+      clearable
+      color="primary"
+      flat
+      hide-details
+      maxlength="1023"
+      ref="input"
+      solo
+      v-else
+    ></v-text-field>
+  </v-list-tile>
+</template>
+
+<script>
+export default {
+  name: 'TodoItem',
+  editing: false,
+  props: [
+    'todo',
+    'editing'
+  ]
+}
+</script>
